@@ -4,9 +4,9 @@ const port = process.env.PORT || 4000;
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
+app.post('/', (req, res) => {
 
-    const response = req.data['hub.challenge']
+    const response = req.body['hub.challenge']
     res.json({ value: response});
 });
 
