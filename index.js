@@ -6,8 +6,8 @@ const port = process.env.PORT || 4000;
 
 // Carregar o certificado SSL e a chave privada
 const options = {
-    key: fs.readFileSync('/etc/letsencrypt/live/unicocontato.tech/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/unicocontato.tech/fullchain.pem')
+    cert: fs.readFileSync('/etc/ssl/certs/ca-certificates.crt'),
+    key: fs.readFileSync('/etc/ssl/private/ssl-cert-snakeoil.key')
 };
 
 app.use(express.json());
