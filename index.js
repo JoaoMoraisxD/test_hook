@@ -12,6 +12,19 @@ const options = {
 
 app.use(express.json());
 
+app.get('/webhook', (req, res) => {
+    let mode = req.query['hub.mode'];
+    let token = req.query['hub.verify_token'];
+    let challenge = req.query['hub.challenge'];
+
+    // Verifique o token e valide a solicitação
+    if (mode && token === 'seu_token_verificado') {
+        res.status(200).send(challenge);
+    } else {
+        res.status(403).send('Forbidden');
+    }
+});
+
 app.post('/', (req, res) => {
     const response = req.body['hub.challenge'];
     res.json({ value: response });
