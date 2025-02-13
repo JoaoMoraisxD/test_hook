@@ -18,11 +18,10 @@ app.get('/webhook', (req, res) => {
     let challenge = req.query['hub.challenge'];
 
     // Verifique o token e valide a solicitação
-    if (mode && token === 'seu_token_verificado') {
-        res.status(200).send(challenge);
-    } else {
-        res.status(403).send('Forbidden');
-    }
+
+    res.status(200).send(challenge);
+    console.log(req.query)
+
 });
 
 app.post('/', (req, res) => {
