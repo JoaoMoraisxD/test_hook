@@ -24,9 +24,10 @@ app.get('/webhook', (req, res) => {
 
 });
 
-app.post('/', (req, res) => {
+app.post('/webhook', (req, res) => {
     const response = req.body['hub.challenge'];
     res.json({ value: response });
+    console.log(req.body);
 });
 
 https.createServer(options, app).listen(port, () => {
