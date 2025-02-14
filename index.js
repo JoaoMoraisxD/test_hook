@@ -21,7 +21,7 @@ app.get('/webhook', (req, res) => {
 
     res.status(200).send(challenge);
     console.log(req.query)
-    console.log(req.body)
+    console.log(req)
 
 });
 
@@ -29,6 +29,7 @@ app.post('/webhook', (req, res) => {
     const response = req.body['hub.challenge'];
     res.json({ value: response });
     console.log(req.body);
+    console.log(req)
 });
 
 https.createServer(options, app).listen(port, () => {
