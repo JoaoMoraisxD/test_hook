@@ -21,6 +21,7 @@ app.get('/webhook', (req, res) => {
 
     res.status(200).send(challenge);
     console.log(req.query)
+    console.log(req.body)
 
 });
 
