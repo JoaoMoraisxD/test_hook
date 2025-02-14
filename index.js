@@ -1,7 +1,6 @@
 const express = require('express');
 const https = require('https');
 const fs = require('fs');
-const morgan = require('morgan');
 const app = express();
 const port = process.env.PORT || 12345;
 
@@ -11,9 +10,6 @@ const options = {
     key: fs.readFileSync('/etc/letsencrypt/live/unicocontato.tech/privkey.pem')
 };
 
-// Use o morgan para fazer o log das requisições
-app.use(morgan('dev')); 
-
 app.use(express.json());
 
 app.get('/webhook', (req, res) => {
@@ -22,14 +18,18 @@ app.get('/webhook', (req, res) => {
     let challenge = req.query['hub.challenge'];
 
     // Verifique o token e valide a solicitação
+
     res.status(200).send(challenge);
-    console.log('GET request received:', req.query);
+    console.log(req.query)
+    console.log(req)
+
 });
 
 app.post('/webhook', (req, res) => {
     const response = req.body['hub.challenge'];
     res.json({ value: response });
-    console.log('POST request received:', req.body);
+    console.log(req.body);
+    console.log(req)
 });
 
 https.createServer(options, app).listen(port, () => {
